@@ -1,32 +1,21 @@
-// Define the word you want to look up
-const word = 'code';
+async function fetchData (){
 
-// Construct the API URL with the specified word
-const apiUrl = `https://api.api-ninjas.com/v1/dictionary?word=${word}`;
-
-// Define your API key
-const apiKey = 'YOUR_API_KEY';
-
-// Make a GET request to the API with the necessary API key
-fetch(apiUrl, {
-    method: 'GET',
-    headers: {
-        'X-Api-Key': apiKey
+    const url = 'https://twinword-word-graph-dictionary.p.rapidapi.com/theme/?entry=mask';
+    const options = {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-key': '1792edec30msh13684a097bd2034p106983jsn147060a62ac3',
+            'x-rapidapi-host': 'twinword-word-graph-dictionary.p.rapidapi.com'
+        }
+    };
+    
+    try {
+        const response = await fetch(url, options);
+        const result = await response.text();
+        console.log(result);
+    } catch (error) {
+        console.error(error);
     }
-})
-.then(response => {
-    if (response.ok) {
-        // Parse the JSON response
-        return response.json();
-    } else {
-        throw new Error('Network response was not ok');
-    }
-})
-.then(data => {
-    // Print the parsed JSON data
-    console.log(data);
-})
-.catch(error => {
-    // Print an error message if the request failed
-    console.error('There was a problem with the fetch operation:', error);
-});
+
+
+}
